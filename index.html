@@ -1,0 +1,284 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VYREN | Premium Headwear</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+    <!-- Navegación -->
+    <nav>
+        <div class="logo">VY<span>R</span>EN</div>
+        <button id="cart-btn" class="btn-cart">
+            🛒 Carrito (<span id="cart-count">0</span>)
+        </button>
+    </nav>
+
+    <!-- Contenido Principal -->
+    <div class="container">
+        
+        <!-- Banner -->
+        <div class="hero">
+            <h2>EL ESTILO EMPIEZA EN <span>LA CABEZA</span></h2>
+            <p>Consigue el toque definitivo para tu outfit diario con los modelos más icónicos de New Era. Colecciones exclusivas y ediciones limitadas en España.</p>
+            <button class="btn-cart" onclick="document.getElementById('catalogo').scrollIntoView({behavior: 'smooth'})">VER COLECCIÓN</button>
+        </div>
+
+        <!-- Nueva Sección: Beneficios de la tienda -->
+        <div class="features">
+            <div class="feature-box">
+                <div class="feature-icon">📦</div>
+                <h3>Envío Express</h3>
+                <p>Recibe tu gorra en 24/48 horas laborables en toda la península de forma gratuita.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🛡️</div>
+                <h3>100% Auténtico</h3>
+                <p>Distribuidores oficiales. Todos nuestros productos cuentan con el sello de calidad de New Era.</p>
+            </div>
+            <div class="feature-box">
+                <div class="feature-icon">🔒</div>
+                <h3>Pago Seguro</h3>
+                <p>Transacciones protegidas y encriptadas de extremo a extremo para tu tranquilidad.</p>
+            </div>
+        </div>
+
+        <!-- Catálogo -->
+        <h2 id="catalogo" class="section-title">Drop Actual</h2>
+        <div id="products-grid" class="grid">
+            <!-- Los productos se cargan con JS -->
+        </div>
+
+        <!-- Nueva Sección: Newsletter -->
+        <div class="newsletter">
+            <h2>Únete al Club VYREN</h2>
+            <p>Suscríbete para recibir acceso anticipado a nuevas gorras y un 10% de descuento en tu primera compra.</p>
+            <form class="newsletter-form" onsubmit="event.preventDefault(); alert('¡Gracias por suscribirte al club VYREN!');">
+                <input type="email" placeholder="Tu correo electrónico..." required>
+                <button type="submit" class="btn-cart">SUSCRIBIRSE</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- Nuevo Footer Completo -->
+    <footer class="footer">
+        <div class="footer-grid">
+            <div class="footer-col">
+                <div class="logo" style="font-size: 2.2rem; margin-bottom: 1rem;">VY<span>R</span>EN</div>
+                <p>Premium headwear para la cultura urbana. Llevamos el mejor estilo urbano directamente a tu puerta desde 2026.</p>
+            </div>
+            <div class="footer-col">
+                <h4>Navegación</h4>
+                <a href="#">Inicio</a>
+                <a href="#catalogo">Catálogo</a>
+                <a href="#">Nuevos Lanzamientos</a>
+                <a href="#">Marcas</a>
+            </div>
+            <div class="footer-col">
+                <h4>Ayuda y Legal</h4>
+                <a href="#">Preguntas Frecuentes</a>
+                <a href="#">Envíos y Devoluciones</a>
+                <a href="#">Términos de Servicio</a>
+                <a href="#">Política de Privacidad</a>
+            </div>
+        </div>
+        <div class="footer-bottom">
+            <p>© 2026 VYREN. Proyecto web desarrollado por Mario para ASIR2.</p>
+        </div>
+    </footer>
+
+    <!-- Modal del Carrito -->
+    <div id="checkout-modal" class="modal-overlay">
+        <div class="modal-content">
+            
+            <!-- Resumen -->
+            <div class="modal-col">
+                <div class="modal-header">
+                    <h2>Tu Pedido</h2>
+                    <button id="close-modal" class="close-btn">&times;</button>
+                </div>
+                <div id="cart-items" class="cart-items"></div>
+                <div class="totals">
+                    <div class="totals-row">
+                        <span>Envío Express:</span>
+                        <span style="color: var(--red-main); font-weight: bold;">GRATIS</span>
+                    </div>
+                    <div class="totals-row final">
+                        <span>Total:</span>
+                        <span id="cart-total">0.00 €</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Formulario de Pago -->
+            <div class="modal-col">
+                <div class="modal-header">
+                    <h2>PAGO SEGURO</h2>
+                </div>
+                <form id="payment-form">
+                    <div class="form-group">
+                        <label>Nombre Completo</label>
+                        <input type="text" id="nombre" required placeholder="Ej: Juan Pérez">
+                    </div>
+                    <div class="form-group">
+                        <label>Dirección de Envío</label>
+                        <input type="text" id="direccion" required placeholder="Calle, Número, Ciudad, CP">
+                    </div>
+                    <div class="form-group">
+                        <label>Número de Tarjeta</label>
+                        <input type="text" id="tarjeta" required maxlength="16" pattern="\d{16}" placeholder="4242 4242 4242 4242">
+                    </div>
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label>Caducidad</label>
+                            <input type="text" id="caducidad" required placeholder="MM/AA">
+                        </div>
+                        <div class="form-group">
+                            <label>CVV</label>
+                            <input type="text" id="cvv" required maxlength="3" pattern="\d{3}" placeholder="123">
+                        </div>
+                    </div>
+                    <button type="submit" class="btn-submit">PAGAR Y FINALIZAR PEDIDO</button>
+                </form>
+                <div id="payment-message" class="message"></div>
+            </div>
+
+        </div>
+    </div>
+
+    <!-- Notificación Toast -->
+    <div id="toast">
+        <span style="font-size: 1.2rem;">✅</span>
+        <span id="toast-msg">Producto añadido</span>
+    </div>
+
+    <!-- SCRIPT PURO (Sin dependencias externas) -->
+    <script>
+        const productos = [
+            { id: 1, nombre: "New Era NY Yankees 9FIFTY Cream/Green", precio: 39.99, img: "./img/9fifty.png", tag: "Exclusivo" },
+            { id: 2, nombre: "New Era NY Yankees 9FORTY Grey/Print", precio: 34.99, img: "./img/9forty.png", tag: "Nuevo" },
+            { id: 3, nombre: "New Era NY Yankees 59FIFTY Red", precio: 39.99, img: "./img/59fifty.png", tag: "Hot" }
+        ];
+
+        let carrito = [];
+
+        window.onload = () => {
+            const grid = document.getElementById('products-grid');
+            const cartBtn = document.getElementById('cart-btn');
+            const modal = document.getElementById('checkout-modal');
+            const closeModal = document.getElementById('close-modal');
+            const form = document.getElementById('payment-form');
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-msg');
+
+            // Renderizar productos
+            productos.forEach(prod => {
+                grid.innerHTML += `
+                    <div class="card">
+                        <span class="tag">${prod.tag}</span>
+                        <div class="card-img-container">
+                            <img src="${prod.img}" alt="${prod.nombre}">
+                        </div>
+                        <h3>${prod.nombre}</h3>
+                        <div class="price">${prod.precio.toFixed(2)} €</div>
+                        <button onclick="añadirAlCarrito(${prod.id})" class="btn-add">AÑADIR AL CARRITO</button>
+                    </div>
+                `;
+            });
+
+            window.añadirAlCarrito = function(id) {
+                const producto = productos.find(p => p.id === id);
+                carrito.push(producto);
+                actualizarCarrito();
+
+                toastMsg.innerText = producto.nombre + " añadido al carrito";
+                toast.classList.add('show');
+                setTimeout(() => toast.classList.remove('show'), 2500);
+            };
+
+            window.eliminarDelCarrito = function(index) {
+                carrito.splice(index, 1);
+                actualizarCarrito();
+            };
+
+            function actualizarCarrito() {
+                document.getElementById('cart-count').innerText = carrito.length;
+                const contenedorItems = document.getElementById('cart-items');
+                contenedorItems.innerHTML = '';
+                
+                let total = 0;
+                carrito.forEach((item, index) => {
+                    total += item.precio;
+                    contenedorItems.innerHTML += `
+                        <div class="cart-item">
+                            <div style="display:flex; align-items:center;">
+                                <img src="${item.img}" alt="Gorra">
+                                <div class="cart-item-info">
+                                    <div class="cart-item-title">${item.nombre}</div>
+                                    <div class="cart-item-price">${item.precio.toFixed(2)} €</div>
+                                </div>
+                            </div>
+                            <button onclick="eliminarDelCarrito(${index})" class="remove-btn">&times;</button>
+                        </div>
+                    `;
+                });
+                document.getElementById('cart-total').innerText = total.toFixed(2) + ' €';
+            }
+
+            cartBtn.onclick = () => modal.classList.add('active');
+            closeModal.onclick = () => modal.classList.remove('active');
+            modal.addEventListener('click', (e) => { if (e.target === modal) modal.classList.remove('active'); });
+
+            form.addEventListener('submit', async (e) => {
+                e.preventDefault();
+                
+                if(carrito.length === 0) {
+                    alert("El carrito está vacío. Añade una gorra primero.");
+                    return;
+                }
+
+                const mensajeDiv = document.getElementById('payment-message');
+                const btnSubmit = form.querySelector('button[type="submit"]');
+                
+                btnSubmit.disabled = true;
+                btnSubmit.innerText = "PROCESANDO...";
+
+                const pedidoNuevo = {
+                    id_pedido: "VYR-" + Math.floor(Math.random() * 1000000),
+                    cliente: {
+                        nombre: document.getElementById('nombre').value,
+                        direccion: document.getElementById('direccion').value,
+                        tarjetaUltimos4: document.getElementById('tarjeta').value.slice(-4)
+                    },
+                    productos: carrito,
+                    total: carrito.reduce((sum, item) => sum + item.precio, 0),
+                    fecha: new Date().toLocaleString()
+                };
+
+                setTimeout(() => {
+                    let bdPedidos = JSON.parse(localStorage.getItem('pedidos_vyren')) || [];
+                    bdPedidos.push(pedidoNuevo);
+                    localStorage.setItem('pedidos_vyren', JSON.stringify(bdPedidos));
+
+                    mensajeDiv.classList.add('success');
+                    mensajeDiv.innerHTML = "🎉 ¡PAGO PROCESADO!<br>Pedido guardado en la base de datos local.";
+                    
+                    carrito = [];
+                    actualizarCarrito();
+                    form.reset();
+                    
+                    setTimeout(() => {
+                        modal.classList.remove('active');
+                        mensajeDiv.classList.remove('success');
+                        btnSubmit.disabled = false;
+                        btnSubmit.innerText = "PAGAR Y FINALIZAR PEDIDO";
+                    }, 3500);
+
+                }, 1500);
+            });
+        };
+    </script>
+</body>
+</html>
